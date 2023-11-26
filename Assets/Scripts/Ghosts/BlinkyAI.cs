@@ -25,13 +25,9 @@ public class BlinkyAI : MonoBehaviour
             case GhostState.Chase:
                 ChasePacman();
                 break;
-            case GhostState.Scatter:
-                // Implement scatter logic
-                break;
             case GhostState.Frightened:
                 // Implement frightened logic
                 break;
-                // Handle other states
         }
     }
 
@@ -46,5 +42,10 @@ public class BlinkyAI : MonoBehaviour
     public void ChangeState(GhostState newState)
     {
         currentState = newState;
+    }
+
+    public void setPacmanTransform(Transform newPacmanTransform)
+    {
+        pacmanTransform = newPacmanTransform;
     }
 }
