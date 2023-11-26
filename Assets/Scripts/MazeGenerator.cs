@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -9,7 +10,14 @@ public class MazeGenerator : MonoBehaviour
     public GameObject floorPrefab;
     public GameObject doorPrefab;
     public GameObject playerPrefab;
+    public GameObject blinkyPrefab;
+    //public GameObject playerPrefab;
+    //public GameObject playerPrefab;
+    //public GameObject playerPrefab;
     public float blockSize = 1.0f;
+    private GameObject pacManInstance;
+
+    public NavMeshSurface surface;
 
     private int[,] maze = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -24,10 +32,10 @@ public class MazeGenerator : MonoBehaviour
         {1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
-        {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 2, 2, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
-        {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
-        {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4},
-        {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
+        {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
+        {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
+        {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4},
+        {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
@@ -48,6 +56,56 @@ public class MazeGenerator : MonoBehaviour
     void Start()
     {
         GenerateMaze();
+        BuildNavMesh();
+        InstantiateGhosts();
+    }
+
+    void BuildNavMesh()
+    {
+        //NavMeshSurface surface = GetComponent<NavMeshSurface>();
+        if (surface != null)
+        {
+
+            // Get the original layer mask
+         // LayerMask originalLayerMask = surface.layerMask;
+
+            // Get the layer numbers
+            int beanLayer = LayerMask.NameToLayer("Beans");
+        //  int playerLayer = LayerMask.NameToLayer("Player");
+
+          
+        //  surface.layerMask = originalLayerMask & ~((1 << beanLayer) | (1 << playerLayer));
+
+            // Build the NavMesh with the updated layer mask
+            surface.BuildNavMesh();
+        }
+        else
+        {
+            Debug.LogError("NavMeshSurface component not found!");
+        }
+    }
+
+
+    void InstantiateGhosts()
+    {
+        // Calculate the middle of the maze
+        int midX = maze.GetLength(0) / 2;
+        int midY = maze.GetLength(1) / 2;
+
+        // Adjust these positions
+        Vector3 blinkySpawnPosition = new Vector3(-midY * blockSize, 0, -midX * blockSize);
+
+        // Instantiate ghosts
+        GameObject blinkyInstance  = Instantiate(blinkyPrefab, blinkySpawnPosition, Quaternion.identity);
+        BlinkyAI blinkyAI = blinkyInstance.GetComponent<BlinkyAI>();
+        if (blinkyAI != null)
+        {
+            blinkyAI.pacmanTransform = pacManInstance.transform;
+        }
+        else
+        {
+            Debug.LogError("BlinkyAI component not found on Blinky instance");
+        }
     }
 
     void GenerateMaze()
@@ -79,7 +137,13 @@ public class MazeGenerator : MonoBehaviour
 
                 if (prefabToInstantiate != null)
                 {
-                    Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
+                    if (maze[x, y] == 3)
+                    {
+                        pacManInstance = Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
+                    }
+                    else {
+                        Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
+                    } 
                 }
             }
         }
