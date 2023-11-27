@@ -12,8 +12,8 @@ public class MazeGenerator : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject blinkyPrefab;
     public GameObject pinkyPrefab;
-    //public GameObject playerPrefab;
-    //public GameObject playerPrefab;
+    public GameObject clydePrefab;
+
     public float blockSize = 1.0f;
     private GameObject pacManInstance;
 
@@ -32,7 +32,7 @@ public class MazeGenerator : MonoBehaviour
         {1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2},
         {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
-        {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
+        {2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 2, 2, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2},
         {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
         {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4},
         {1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
@@ -82,7 +82,8 @@ public class MazeGenerator : MonoBehaviour
 
         // Adjust these positions
         Vector3 blinkySpawnPosition = new Vector3(-midY * blockSize, 0, -midX * blockSize);
-        Vector3 pinkySpawnPosition = new Vector3(-midY * blockSize + 1, 2, -midX * blockSize);
+        Vector3 pinkySpawnPosition = new Vector3(-midY * blockSize + 1, 0, -midX * blockSize);
+        Vector3 clydeSpawnPosition = new Vector3(-midY * blockSize + 3, 0, -midX * blockSize);
 
         // Instantiate ghosts
         GameObject blinkyInstance  = Instantiate(blinkyPrefab, blinkySpawnPosition, Quaternion.identity);
@@ -96,7 +97,7 @@ public class MazeGenerator : MonoBehaviour
             Debug.LogError("BlinkyAI component not found on Blinky instance");
         }
 
-        GameObject pinkyInstance = Instantiate(pinkyPrefab, blinkySpawnPosition, Quaternion.identity);
+        GameObject pinkyInstance = Instantiate(pinkyPrefab, pinkySpawnPosition, Quaternion.identity);
         PinkyAI pinkyAI = pinkyInstance.GetComponent<PinkyAI>();
         if (pinkyAI != null)
         {
@@ -104,8 +105,28 @@ public class MazeGenerator : MonoBehaviour
         }
         else
         {
-            Debug.LogError("PinkyAI component not found on Blinky instance");
+            Debug.LogError("PinkyAI component not found on Pinky instance");
         }
+
+        Vector3 scatterTarget = GetLowerLeftPosition();
+        GameObject clydeInstance = Instantiate(clydePrefab, clydeSpawnPosition, Quaternion.identity);
+        ClydeAI clydeAI = clydeInstance.GetComponent<ClydeAI>();
+        if (clydeAI != null)
+        {
+            clydeAI.pacmanTransform = pacManInstance.transform;
+            clydeAI.scatterTarget = scatterTarget;
+        }
+        else
+        {
+            Debug.LogError("ClydeAI component not found on Clyde instance");
+        }
+    }
+
+    private Vector3 GetLowerLeftPosition()
+    {
+        int x = maze.GetLength(0) - 2;
+        int y = maze.GetLength(1) - 2;
+        return new Vector3(-y * blockSize, 0, -x * blockSize);
     }
 
     void GenerateMaze()
