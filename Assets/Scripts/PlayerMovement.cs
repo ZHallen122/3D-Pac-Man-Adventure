@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed = 2f;
+    private float speed = 4f;
     private Vector2 moveAction;
     private InputActions inputActions;
 
@@ -15,25 +15,32 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector3 movement = new Vector3(moveAction.x, 0, moveAction.y);
-        transform.Translate(movement * speed * Time.deltaTime);
+        if (movement != Vector3.zero)
+        {
+            // rotation to face the direction of movement
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
+
+        // Move Pac-Man
+        transform.Translate(movement.normalized * speed * Time.deltaTime, Space.World);
     }
 
     private void OnEnable()
     {
-        inputActions.Player.Move.performed += receiveMove;
-        inputActions.Player.Move.canceled += receiveMove;
+        inputActions.Player.Move.performed += ReceiveMove;
+        inputActions.Player.Move.canceled += ReceiveMove;
         inputActions.Player.Enable();
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Move.performed -= receiveMove;
-        inputActions.Player.Move.canceled -= receiveMove;
+        inputActions.Player.Move.performed -= ReceiveMove;
+        inputActions.Player.Move.canceled -= ReceiveMove;
         inputActions.Player.Disable();
     }
 
-    public void receiveMove(InputAction.CallbackContext obj)
+    public void ReceiveMove(InputAction.CallbackContext context)
     {
-        moveAction = obj.ReadValue<Vector2>();
+        moveAction = context.ReadValue<Vector2>();
     }
 }

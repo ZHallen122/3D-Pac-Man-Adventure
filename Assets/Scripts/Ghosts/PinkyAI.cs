@@ -9,7 +9,8 @@ public class PinkyAI : MonoBehaviour
     private NavMeshAgent agent;
     public Transform pacmanTransform;
     private GhostState currentState;
-    public int tilesAhead = 4;
+    public int predictAhead = 3;
+    public float closeDistanceThreshold = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,42 +22,46 @@ public class PinkyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distanceToPacman = Vector3.Distance(transform.position, pacmanTransform.position);
+        if (distanceToPacman <= closeDistanceThreshold)
+        {
+            predictAhead = 0;
+        }
+        else
+        {
+            predictAhead = 5;
+        }
+
         switch (currentState)
         {
             case GhostState.Chase:
                 ChasePacman();
                 break;
-            case GhostState.Scatter:
-                // Implement scatter logic
-                break;
             case GhostState.Frightened:
                 // Implement frightened logic
                 break;
-                // Handle other states
         }
     }
 
     private void ChasePacman()
     {
-        if (pacmanTransform != null)
+        Vector3 targetPosition = CalculateTargetPosition();
+        if (!agent.pathPending)
         {
-            Vector3 targetPosition = CalculateTargetPosition();
             agent.SetDestination(targetPosition);
         }
     }
 
     private Vector3 CalculateTargetPosition()
     {
-        // Determine Pac-Man's direction and calculate the target position
-        // This can be based on Pac-Man's current velocity or the direction he is facing
+        
         Vector3 pacmanDirection = pacmanTransform.forward;
-        Vector3 targetPosition = pacmanTransform.position + pacmanDirection * tilesAhead;
+        Vector3 targetPosition = pacmanTransform.position + pacmanDirection * predictAhead;
         return targetPosition;
     }
 
     public void ChangeState(GhostState newState)
     {
         currentState = newState;
-        // Handle any setup needed for the new state
     }
 }
