@@ -459,7 +459,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.13333334
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -528,6 +528,7 @@ MonoBehaviour:
   doorPrefab: {fileID: 3829318676839457108, guid: 7a7d4f9afe2b14300beb1c8274da28c6, type: 3}
   playerPrefab: {fileID: 3992902274573427478, guid: a55253de9ee514585bc6e7977353a8e8, type: 3}
   blinkyPrefab: {fileID: 8188363531256532822, guid: 7c28a08b8ec198940b35366578998175, type: 3}
+  pinkyPrefab: {fileID: 5152310204361215783, guid: 05d1c7b4f2d04604ba2c642b86feffcf, type: 3}
   blockSize: 1
   surface: {fileID: 1130683669}
 --- !u!1660057539 &9223372036854775807
