@@ -11,7 +11,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject doorPrefab;
     public GameObject playerPrefab;
     public GameObject blinkyPrefab;
-    //public GameObject playerPrefab;
+    public GameObject pinkyPrefab;
     //public GameObject playerPrefab;
     //public GameObject playerPrefab;
     public float blockSize = 1.0f;
@@ -62,20 +62,8 @@ public class MazeGenerator : MonoBehaviour
 
     void BuildNavMesh()
     {
-        //NavMeshSurface surface = GetComponent<NavMeshSurface>();
         if (surface != null)
         {
-
-            // Get the original layer mask
-         // LayerMask originalLayerMask = surface.layerMask;
-
-            // Get the layer numbers
-            int beanLayer = LayerMask.NameToLayer("Beans");
-        //  int playerLayer = LayerMask.NameToLayer("Player");
-
-          
-        //  surface.layerMask = originalLayerMask & ~((1 << beanLayer) | (1 << playerLayer));
-
             // Build the NavMesh with the updated layer mask
             surface.BuildNavMesh();
         }
@@ -94,6 +82,7 @@ public class MazeGenerator : MonoBehaviour
 
         // Adjust these positions
         Vector3 blinkySpawnPosition = new Vector3(-midY * blockSize, 0, -midX * blockSize);
+        Vector3 pinkySpawnPosition = new Vector3(-midY * blockSize + 1, 2, -midX * blockSize);
 
         // Instantiate ghosts
         GameObject blinkyInstance  = Instantiate(blinkyPrefab, blinkySpawnPosition, Quaternion.identity);
@@ -105,6 +94,17 @@ public class MazeGenerator : MonoBehaviour
         else
         {
             Debug.LogError("BlinkyAI component not found on Blinky instance");
+        }
+
+        GameObject pinkyInstance = Instantiate(pinkyPrefab, blinkySpawnPosition, Quaternion.identity);
+        PinkyAI pinkyAI = pinkyInstance.GetComponent<PinkyAI>();
+        if (pinkyAI != null)
+        {
+            pinkyAI.pacmanTransform = pacManInstance.transform;
+        }
+        else
+        {
+            Debug.LogError("PinkyAI component not found on Blinky instance");
         }
     }
 
