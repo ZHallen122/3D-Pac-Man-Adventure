@@ -141,6 +141,7 @@ public class MazeGenerator : MonoBehaviour
                 {
                     case 0:
                         prefabToInstantiate = beanPrefab;
+                        BeanManager.instance.addleftBean();
                         break;
                     case 1:
                         prefabToInstantiate = wallPrefab;

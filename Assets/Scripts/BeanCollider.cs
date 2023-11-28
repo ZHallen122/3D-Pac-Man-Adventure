@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +12,7 @@ public class BeanCollider : MonoBehaviour
             AudioSource audioSource = other.gameObject.GetComponent<AudioSource>();
             if (audioSource != null)
             {
+                BeanManager.instance.addBean();
                 audioSource.PlayOneShot(audioSource.clip);
             }
 
