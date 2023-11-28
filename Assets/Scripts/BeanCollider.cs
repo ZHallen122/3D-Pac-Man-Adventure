@@ -9,6 +9,12 @@ public class BeanCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioSource audioSource = other.gameObject.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+
             Destroy(gameObject);
         }
     }
