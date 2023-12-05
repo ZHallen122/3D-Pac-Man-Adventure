@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// Author: Allen Zhang
+
 using UnityEngine;
 using UnityEngine.AI;
 using lab6Agent;

@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// Author: Qiaoxin Huang, Allen Zhang
+
 using UnityEngine;
 using Unity.AI.Navigation;
 

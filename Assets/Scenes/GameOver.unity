@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 901563756}
   - component: {fileID: 901563755}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GameOverTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1136,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27696f092c4446fab6b008074b6b071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverText: {fileID: 901563755}
 --- !u!1 &1911324402
 GameObject:
   m_ObjectHideFlags: 0

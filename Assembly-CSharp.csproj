@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/BeanManager.cs" />
-    <Compile Include="Assets/Scripts/BeanCount.cs" />
     <Compile Include="Assets/Scripts/Ghosts/ClydeAI.cs" />
     <Compile Include="Assets/Scripts/Ghosts/TriggerHandler.cs" />
     <Compile Include="Assets/Scripts/Ghosts/GhostState.cs" />
