@@ -118,6 +118,8 @@ GameObject:
   - component: {fileID: 5596073883050452935}
   - component: {fileID: 8186092959182469494}
   - component: {fileID: -1172170845408620255}
+  - component: {fileID: -3839428813100214368}
+  - component: {fileID: 1951663828639330440}
   m_Layer: 0
   m_Name: Blinky
   m_TagString: Untagged
@@ -176,3 +178,38 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 1
+--- !u!136 &-3839428813100214368
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188363531256532822}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1951663828639330440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188363531256532822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d35c0a8f48e4c24abd3b16a3fb49cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
