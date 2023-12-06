@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BeanCollider : MonoBehaviour
 {
+    public GameObject particlePrefab;
+
     // When the player collides with the bean, the bean will be destroyed.
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +17,10 @@ public class BeanCollider : MonoBehaviour
                 BeanManager.instance.addBean();
                 audioSource.PlayOneShot(audioSource.clip);
             }
-
+            if (particlePrefab != null)
+            {
+                Instantiate(particlePrefab, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
