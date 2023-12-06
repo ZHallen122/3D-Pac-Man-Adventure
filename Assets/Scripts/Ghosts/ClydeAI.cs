@@ -4,11 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using lab6Agent;
 
-public class ClydeAI : MonoBehaviour
+public class ClydeAI : BaseGhostAI
 {
-    private NavMeshAgent agent;
     public Transform pacmanTransform;
-    private GhostState currentState;
     public Vector3 scatterTarget; // lower-left corner
     private float radius = 8f; // 8-dot radius
 
@@ -42,25 +40,30 @@ public class ClydeAI : MonoBehaviour
                 Scatter();
                 break;
             case GhostState.Frightened:
-                // Frightened logic
                 break;
         }
     }
 
     private void ChasePacman()
     {
-        agent.SetDestination(pacmanTransform.position);
-        ChangeState(GhostState.Chase);
+        if (agent != null && pacmanTransform != null && agent.isOnNavMesh)
+        {
+            agent.SetDestination(pacmanTransform.position);
+            ChangeState(GhostState.Chase);
+        }
     }
 
     private void Scatter()
     {
-        agent.SetDestination(scatterTarget);
-        ChangeState(GhostState.Scatter);
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.SetDestination(scatterTarget);
+            ChangeState(GhostState.Scatter);
+        }
     }
 
-    public void ChangeState(GhostState newState)
+    public override void ChangeState(GhostState newState)
     {
-        currentState = newState;
+        base.ChangeState(newState);
     }
 }
