@@ -23,7 +23,7 @@ public class BeanManager : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(gameObject); // Ensures there is only one instance of BeanManager
+            Destroy(gameObject);
         }
     }
 
@@ -32,19 +32,16 @@ public class BeanManager : MonoBehaviour
     void Start()
     {
         beanText.text = "Score: " + curBean.ToString();
-        //leftBeanText.text = "Left bean: " + leftBean.ToString();
     }
 
     public void addBean() {
         curBean += 1;
         leftBean -= 1;
         beanText.text = "Score: " + curBean.ToString();
-        //leftBeanText.text = "Left bean: " + leftBean.ToString();
     }
 
     public void addleftBean()
     {
         leftBean += 1;
-        //leftBeanText.text = "Left bean: " + leftBean.ToString();
     }
 }
