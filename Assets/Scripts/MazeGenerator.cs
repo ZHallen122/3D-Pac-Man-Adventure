@@ -7,11 +7,15 @@ public class MazeGenerator : MonoBehaviour
 {
     public GameObject wallPrefab;
     public GameObject beanPrefab;
+    public GameObject superSpeedBeanPrefab;
+    public GameObject superShootBeanPrefab;
     public GameObject floorPrefab;
     public GameObject doorPrefab;
+
     public GameObject playerPrefab;
     public GameObject blinkyPrefab;
     public GameObject pinkyPrefab;
+    public GameObject InkyPrefab;
     public GameObject clydePrefab;
 
     public float blockSize = 1.0f;
@@ -49,7 +53,7 @@ public class MazeGenerator : MonoBehaviour
         {1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
         {1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
         {1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 5, 1},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
 
@@ -84,6 +88,7 @@ public class MazeGenerator : MonoBehaviour
         Vector3 blinkySpawnPosition = new Vector3(-midY * blockSize, 0, -midX * blockSize);
         Vector3 pinkySpawnPosition = new Vector3(-midY * blockSize + 1, 0, -midX * blockSize);
         Vector3 clydeSpawnPosition = new Vector3(-midY * blockSize + 3, 0, -midX * blockSize);
+        Vector3 InkySpawnPosition = new Vector3(-midY * blockSize + 3, 0, -midX * blockSize+1);
 
         // Instantiate ghosts
         GameObject blinkyInstance  = Instantiate(blinkyPrefab, blinkySpawnPosition, Quaternion.identity);
@@ -120,6 +125,18 @@ public class MazeGenerator : MonoBehaviour
         {
             Debug.LogError("ClydeAI component not found on Clyde instance");
         }
+
+        GameObject InkyInstance = Instantiate(InkyPrefab, InkySpawnPosition, Quaternion.identity);
+        InkyAI inkyAI = InkyInstance.GetComponent<InkyAI>();
+        if (inkyAI != null)
+        {
+            inkyAI.pacmanTransform = pacManInstance.transform;
+            inkyAI.blinkyTransform = blinkyInstance.transform;
+        }
+        else
+        {
+            Debug.LogError("BlinkyAI component not found on Blinky instance");
+        }
     }
 
     private Vector3 GetLowerLeftPosition()
@@ -154,6 +171,12 @@ public class MazeGenerator : MonoBehaviour
                         break;
                     case 4:
                         prefabToInstantiate = doorPrefab;
+                        break;
+                    case 5:
+                        prefabToInstantiate = superSpeedBeanPrefab;
+                        break;
+                    case 6:
+                        prefabToInstantiate = superShootBeanPrefab;
                         break;
                 }
 

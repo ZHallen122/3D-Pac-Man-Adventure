@@ -4,19 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using lab6Agent;
 
-public class PinkyAI : MonoBehaviour
+public class PinkyAI : BaseGhostAI
 {
-    private NavMeshAgent agent;
     public Transform pacmanTransform;
-    private GhostState currentState;
     public int predictAhead = 3;
     public float closeDistanceThreshold = 5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentState = GhostState.Chase; // Start in the chase state
+        currentState = GhostState.Chase;
     }
 
     // Update is called once per frame
@@ -38,7 +35,6 @@ public class PinkyAI : MonoBehaviour
                 ChasePacman();
                 break;
             case GhostState.Frightened:
-                // Implement frightened logic
                 break;
         }
     }
@@ -46,7 +42,7 @@ public class PinkyAI : MonoBehaviour
     private void ChasePacman()
     {
         Vector3 targetPosition = CalculateTargetPosition();
-        if (!agent.pathPending)
+        if (agent!= null && !agent.pathPending)
         {
             agent.SetDestination(targetPosition);
         }
@@ -60,8 +56,8 @@ public class PinkyAI : MonoBehaviour
         return targetPosition;
     }
 
-    public void ChangeState(GhostState newState)
+    public override void ChangeState(GhostState newState)
     {
-        currentState = newState;
+        base.ChangeState(newState);
     }
 }
