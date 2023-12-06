@@ -1,5 +1,5 @@
-using System;
-using System.Collections;
+// Author: Allen Zhang
+
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour

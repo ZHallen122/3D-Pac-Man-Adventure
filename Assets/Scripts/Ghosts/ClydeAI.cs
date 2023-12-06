@@ -1,4 +1,4 @@
-// Author: Qiaoxin Huang
+// Author: Qiaoxin Huang, Allen Zhang
 
 using UnityEngine;
 using UnityEngine.AI;
