@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// Author: Allen Zhang
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +11,7 @@ public class BeanManager : MonoBehaviour
     public Text leftBeanText;
 
     int curBean = 0;
-    int leftBean = 0;
+    public int leftBean = 0;
 
     void Awake()
     {
@@ -19,14 +19,12 @@ public class BeanManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
             Destroy(gameObject); // Ensures there is only one instance of BeanManager
         }
-
-        // Optionally, you can make this object persist across scene loads
-        // DontDestroyOnLoad(gameObject);
     }
 
 

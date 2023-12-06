@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// Author: Allen Zhang
+
 using UnityEngine;
 using UnityEngine.AI;
 using lab6Agent;
@@ -14,7 +14,6 @@ public class BlinkyAI : BaseGhostAI
         agent.stoppingDistance = 0f;
         currentState = GhostState.Chase; // Start in the chase state
     }
-
 
     void Update()
     {

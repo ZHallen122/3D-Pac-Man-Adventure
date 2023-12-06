@@ -1,3 +1,5 @@
+// Author: Allen Zhang
+
 using lab6Agent;
 using UnityEngine;
 using UnityEngine.AI;

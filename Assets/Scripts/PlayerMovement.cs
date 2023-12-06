@@ -1,3 +1,5 @@
+// Author: Qiaoxin Huang, Allen Zhang
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;

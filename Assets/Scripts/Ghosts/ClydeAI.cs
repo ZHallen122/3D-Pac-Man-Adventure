@@ -1,3 +1,5 @@
+// Author: Qiaoxin Huang
+
 using UnityEngine;
 using UnityEngine.AI;
 using lab6Agent;
