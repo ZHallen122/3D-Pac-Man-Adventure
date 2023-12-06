@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: -8103577548081806684}
   - component: {fileID: 5858775349310602135}
   - component: {fileID: 1465595439863216992}
+  - component: {fileID: -2548309258239032744}
   m_Layer: 0
   m_Name: Inky
   m_TagString: Ghost
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15672495e40c7f4cb2945d9c719e3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   pacmanTransform: {fileID: 0}
   blinkyTransform: {fileID: 0}
   tilesAhead: 2
@@ -171,7 +173,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -179,3 +181,15 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2548309258239032744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088462758591355857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d35c0a8f48e4c24abd3b16a3fb49cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

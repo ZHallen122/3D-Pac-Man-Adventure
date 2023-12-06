@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -1172170845408620255}
   - component: {fileID: 2762577241208245861}
   - component: {fileID: 233032676161924681}
-
+  - component: {fileID: 4087552915160772747}
   m_Layer: 0
   m_Name: Blinky
   m_TagString: Ghost
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68cdd104b248ea94fb56e70a839f5e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frightenedMaterial: {fileID: 2100000, guid: f6d19187f7fd25b4ca3d1d02e6d8c9ab, type: 2}
+  agent: {fileID: 0}
   pacmanTransform: {fileID: 0}
 --- !u!195 &-1172170845408620255
 NavMeshAgent:
@@ -176,10 +176,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.592297
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
-
+  m_Center: {x: 0, y: 0.7961485, z: 0}
 --- !u!23 &233032676161924681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -199,8 +198,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,4 +220,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-
+--- !u!114 &4087552915160772747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188363531256532822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d35c0a8f48e4c24abd3b16a3fb49cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

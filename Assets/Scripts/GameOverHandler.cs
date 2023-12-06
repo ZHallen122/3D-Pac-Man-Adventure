@@ -32,7 +32,7 @@ public class GameOverHandler : MonoBehaviour
             }
             else
             {
-                gameOverText.text = "You Lose!";
+                gameOverText.text = "Game Over";
             }
         }
     }

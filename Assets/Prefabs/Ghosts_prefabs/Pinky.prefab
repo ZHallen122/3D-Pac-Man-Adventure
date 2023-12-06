@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7684129848145220790}
   - component: {fileID: 8735270495023868432}
   - component: {fileID: -2111905259892881216}
+  - component: {fileID: -2450585592807254956}
   m_Layer: 0
   m_Name: Pinky
   m_TagString: Ghost
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd43a94c72270e04199a6bdb2d325b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   pacmanTransform: {fileID: 0}
   predictAhead: 3
   closeDistanceThreshold: 5
@@ -87,7 +89,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -95,6 +97,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2450585592807254956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5152310204361215783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d35c0a8f48e4c24abd3b16a3fb49cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8624355509260334185
 GameObject:
   m_ObjectHideFlags: 0
