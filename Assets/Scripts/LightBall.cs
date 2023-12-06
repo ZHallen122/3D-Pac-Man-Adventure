@@ -1,6 +1,6 @@
+// Author: Allen Zhang, Qiaoxin Huang
+
 using lab6Agent;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightBall : MonoBehaviour
@@ -9,11 +9,9 @@ public class LightBall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ghost"))
         {
-            Debug.Log("test");
             BaseGhostAI ghostAI = other.GetComponent<BaseGhostAI>();
             if (ghostAI != null)
             {
-                Debug.Log("test");
                 ghostAI.ChangeState(GhostState.Frightened);
             }
             else {

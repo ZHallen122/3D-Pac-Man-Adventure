@@ -232,6 +232,7 @@ MonoBehaviour:
   lightBallPrefab: {fileID: 8182186040330527751, guid: b24e359c0bfb3554bbe488ffd72f5098, type: 3}
   shootPoint: {fileID: 7368298063106714190}
   shootForce: 1000
+  abilitySound: {fileID: 8300000, guid: 00d300f49ba0549d0a67a7b737f5074d, type: 3}
 --- !u!54 &4985326121983230964
 Rigidbody:
   m_ObjectHideFlags: 0

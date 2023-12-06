@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canShoot = false;
 
+    public AudioClip abilitySound;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -79,11 +81,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("SuperSpeedBean"))
         {
+            AudioSource.PlayClipAtPoint(abilitySound, transform.position, 3.5f);
             StartCoroutine(ApplySpeedBoost(5f, 1.5f));
             Destroy(other.gameObject); // Destroy the special bean
         }
         else if (other.CompareTag("SuperShootBean"))
         {
+            AudioSource.PlayClipAtPoint(abilitySound, transform.position, 3.5f);
             StartCoroutine(EnableShootingForDuration(10f)); // Enable shooting for 10 seconds
             Destroy(other.gameObject);
         }
@@ -96,7 +100,5 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         speed = originalSpeed;
     }
-
-
 
 }
