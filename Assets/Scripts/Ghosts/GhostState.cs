@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// Author: Allen Zhang
 
 namespace lab6Agent
 {
