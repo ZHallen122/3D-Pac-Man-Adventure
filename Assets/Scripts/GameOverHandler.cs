@@ -15,6 +15,7 @@ public class GameOverHandler : MonoBehaviour
     public void onExit()
     {
         Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     void Start()
