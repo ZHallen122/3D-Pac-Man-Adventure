@@ -18,6 +18,9 @@ public class MazeGenerator : MonoBehaviour
     public GameObject InkyPrefab;
     public GameObject clydePrefab;
 
+    GameObject teleporterA = null;
+    GameObject teleporterB = null;
+
     public float blockSize = 1.0f;
     private GameObject pacManInstance;
 
@@ -185,11 +188,33 @@ public class MazeGenerator : MonoBehaviour
                     if (maze[x, y] == 3)
                     {
                         pacManInstance = Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
+                    } else if (maze[x, y] == 4) {
+                        GameObject newTeleporter = Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
+                        if (teleporterA == null)
+                        {
+                            teleporterA = newTeleporter;
+                        }
+                        else if (teleporterB == null)
+                        {
+                            teleporterB = newTeleporter;
+                        }
                     }
                     else {
                         Instantiate(prefabToInstantiate, new Vector3(-y * blockSize, 0, -x * blockSize), Quaternion.identity);
                     } 
                 }
+            }
+        }
+
+        // Link teleporters
+        if (teleporterA != null && teleporterB != null)
+        {
+            Teleporter teleporterAScript = teleporterA.GetComponent<Teleporter>();
+            Teleporter teleporterBScript = teleporterB.GetComponent<Teleporter>();
+            if (teleporterAScript != null && teleporterBScript != null)
+            {
+                teleporterAScript.targetTeleporter = teleporterB.transform;
+                teleporterBScript.targetTeleporter = teleporterA.transform;
             }
         }
     }
