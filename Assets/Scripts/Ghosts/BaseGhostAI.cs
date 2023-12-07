@@ -1,3 +1,4 @@
+// Author: Allen Zhang
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
