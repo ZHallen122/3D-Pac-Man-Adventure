@@ -7,8 +7,8 @@ using lab6Agent;
 public class PinkyAI : BaseGhostAI
 {
     public Transform pacmanTransform;
-    public int predictAhead = 3;
-    public float closeDistanceThreshold = 5f;
+    public int predictAhead = 3;    // Variable to predict how many units ahead of Pacman
+    public float closeDistanceThreshold = 5f;   // Distance threshold to change Pinky's behavior
 
     void Start()
     {
@@ -39,6 +39,7 @@ public class PinkyAI : BaseGhostAI
         }
     }
 
+    // Method for Pinky to chase Pacman
     private void ChasePacman()
     {
         Vector3 targetPosition = CalculateTargetPosition();
@@ -48,6 +49,7 @@ public class PinkyAI : BaseGhostAI
         }
     }
 
+    // calculate Pinky's target position based on Pacman's position and direction
     private Vector3 CalculateTargetPosition()
     {
         
@@ -56,6 +58,7 @@ public class PinkyAI : BaseGhostAI
         return targetPosition;
     }
 
+    // Override ChangeState method from BaseGhostAI
     public override void ChangeState(GhostState newState)
     {
         base.ChangeState(newState);
