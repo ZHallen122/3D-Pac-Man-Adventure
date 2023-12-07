@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public Transform targetTeleporter;
+    public Transform targetTeleporter;  // Target teleporter to which objects will be teleported
     public float minDistanceToReactivate = 0.3f; // Minimum distance from the target teleporter
 
     private void OnTriggerEnter(Collider other)
@@ -15,6 +15,7 @@ public class Teleporter : MonoBehaviour
         }
     }
 
+    // Method to check if the object can be teleported based on distance
     private bool CanTeleport(Transform objectTransform)
     {
         float distanceFromTarget = Vector3.Distance(transform.position, objectTransform.position);
