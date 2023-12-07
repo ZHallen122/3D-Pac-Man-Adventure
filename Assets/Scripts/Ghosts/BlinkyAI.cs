@@ -7,7 +7,7 @@ using lab6Agent;
 public class BlinkyAI : BaseGhostAI
 {
 
-    public Transform pacmanTransform;
+    public Transform pacmanTransform;   // Transform of Pacman, the target for Blinky
 
     void Start()
     {
@@ -27,6 +27,7 @@ public class BlinkyAI : BaseGhostAI
         }
     }
 
+    // Method for Blinky to chase Pacman
     private void ChasePacman()
     {
         if (pacmanTransform != null)
@@ -35,11 +36,13 @@ public class BlinkyAI : BaseGhostAI
         }
     }
 
+    // Override ChangeState method from BaseGhostAI
     public override void ChangeState(GhostState newState)
     {
         base.ChangeState(newState);
     }
 
+    // Method to update Pacman transform
     public void setPacmanTransform(Transform newPacmanTransform)
     {
         pacmanTransform = newPacmanTransform;
