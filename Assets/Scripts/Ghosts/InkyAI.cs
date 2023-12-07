@@ -9,7 +9,7 @@ public class InkyAI : BaseGhostAI
     public Transform pacmanTransform;
     public Transform blinkyTransform; 
     public float tilesAhead = 10f;
-    public float blinkyFactor = 2f;
+    public float blinkyFactor = 2f; // Multiplier for Blinky's influence on Inky's target position
 
     void Start()
     {
@@ -34,6 +34,7 @@ public class InkyAI : BaseGhostAI
         }
     }
 
+    // Method for Inky to chase Pacman
     private void ChasePacman()
     {
         if (agent != null && pacmanTransform != null)
@@ -43,7 +44,7 @@ public class InkyAI : BaseGhostAI
         }
     }
 
-
+    // Method to calculate Inky's target position based on Blinky's positions
     private Vector3 CalculateTargetPosition()
     {
         Vector3 BlinkyDirection = blinkyTransform.forward;
@@ -52,6 +53,7 @@ public class InkyAI : BaseGhostAI
         return targetPosition;
     }
 
+    // Override ChangeState method from BaseGhostAI
     public override void ChangeState(GhostState newState)
     {
         base.ChangeState(newState);
