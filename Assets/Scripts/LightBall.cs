@@ -1,4 +1,4 @@
-// Author: Allen Zhang, Qiaoxin Huang
+// Author: Allen Zhang
 
 using lab6Agent;
 using UnityEngine;

@@ -1,4 +1,4 @@
-// Author: Qiaoxin Huang
+// Author: Qiaoxin Huang, Allen Zhang
 
 using UnityEngine;
 
@@ -6,7 +6,8 @@ public class BeanCollider : MonoBehaviour
 {
     public GameObject particlePrefab;
 
-    // When the player collides with the bean, the bean will be destroyed.
+    // When the player collides with a collectible,
+    // increment the score, play interaction sound and show effect, then the collectible will be destroyed
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

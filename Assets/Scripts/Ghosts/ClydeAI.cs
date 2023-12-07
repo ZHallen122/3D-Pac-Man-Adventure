@@ -1,4 +1,4 @@
-// Author: Qiaoxin Huang
+// Author: Qiaoxin Huang, Allen Zhang
 
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,6 +6,7 @@ using lab6Agent;
 
 public class ClydeAI : BaseGhostAI
 {
+    // Define variables
     public Transform pacmanTransform;
     public Vector3 scatterTarget; // lower-left corner
     private float radius = 8f; // 8-dot radius
@@ -18,6 +19,7 @@ public class ClydeAI : BaseGhostAI
 
     void Update()
     {
+        // Get the distance between Clyde ghost and Pac-Man
         float distanceToPacman = Vector3.Distance(transform.position, pacmanTransform.position);
 
         // If it is farther than 8-dot radius away from Pac-Man, chase Pac-Man;
@@ -31,6 +33,7 @@ public class ClydeAI : BaseGhostAI
             Scatter();
         }
 
+        // Switchboard based on the current state
         switch (currentState)
         {
             case GhostState.Chase:
@@ -44,6 +47,7 @@ public class ClydeAI : BaseGhostAI
         }
     }
 
+    // Method for state of chasing
     private void ChasePacman()
     {
         if (agent != null && pacmanTransform != null && agent.isOnNavMesh)
@@ -53,6 +57,7 @@ public class ClydeAI : BaseGhostAI
         }
     }
 
+    // Method for state of scattering
     private void Scatter()
     {
         if (agent != null && agent.isOnNavMesh)
@@ -62,6 +67,7 @@ public class ClydeAI : BaseGhostAI
         }
     }
 
+    // Method for chaging to a new state
     public override void ChangeState(GhostState newState)
     {
         base.ChangeState(newState);

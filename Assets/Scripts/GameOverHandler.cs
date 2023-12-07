@@ -6,12 +6,16 @@ using TMPro;
 
 public class GameOverHandler : MonoBehaviour
 {
+    // Define display text
     public TextMeshProUGUI gameOverText;
+
+    // Load the main game scene when click on restart
     public void onRestart()
     {
         SceneManager.LoadScene(1);
     }
 
+    // Exit the play mode when click quit button
     public void onExit()
     {
         Application.Quit();
@@ -23,6 +27,7 @@ public class GameOverHandler : MonoBehaviour
         UpdateGameOverText();
     }
 
+    // Update the text when the collectibles are collected
     void UpdateGameOverText()
     {
         if (BeanManager.instance != null)

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Define variables
     private float speed = 4f;
     private Vector2 moveAction;
     private InputActions inputActions;
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Disable();
     }
 
+    // Recieve move action inputs
     public void ReceiveMove(InputAction.CallbackContext context)
     {
         moveAction = context.ReadValue<Vector2>();

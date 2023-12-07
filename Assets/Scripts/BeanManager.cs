@@ -35,6 +35,7 @@ public class BeanManager : MonoBehaviour
         //leftBeanText.text = "Left bean: " + leftBean.ToString();
     }
 
+    // Update the score based on the number of collectibles collected
     public void addBean() {
         curBean += 1;
         leftBean -= 1;

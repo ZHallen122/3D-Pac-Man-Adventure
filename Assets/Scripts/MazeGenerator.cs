@@ -5,6 +5,7 @@ using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour
 {
+    // Define prefabs
     public GameObject wallPrefab;
     public GameObject beanPrefab;
     public GameObject superSpeedBeanPrefab;
@@ -18,6 +19,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject InkyPrefab;
     public GameObject clydePrefab;
 
+    // Define variables
     GameObject teleporterA = null;
     GameObject teleporterB = null;
 
@@ -80,7 +82,6 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-
     void InstantiateGhosts()
     {
         // Calculate the middle of the maze
@@ -142,6 +143,7 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    // Calculate the position of left bottom corner for Clyde ghost
     private Vector3 GetLowerLeftPosition()
     {
         int x = maze.GetLength(0) - 2;
@@ -149,6 +151,7 @@ public class MazeGenerator : MonoBehaviour
         return new Vector3(-y * blockSize, 0, -x * blockSize);
     }
 
+    // Initialize prefabs based on the maze array layout
     void GenerateMaze()
     {
         for (int x = 0; x < maze.GetLength(0); x++)
